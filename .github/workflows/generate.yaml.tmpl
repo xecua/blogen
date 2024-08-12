@@ -14,7 +14,7 @@ jobs:
         uses: chetan/git-restore-mtime-action@v1.2
       - name: Rustup
         run: curl -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable
-      - uses: Swatinem/rust-cache@v2.0.1
+      - uses: Swatinem/rust-cache@v2.7.3
       - run: cargo run --release
         env:
           BLOG_NAME: "blog name"
@@ -22,7 +22,7 @@ jobs:
         with:
           add: cache.json.zst
           default_author: user_info
-      - uses: actions/upload-pages-artifact@v1
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: out
   deploy:
@@ -36,4 +36,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
