@@ -7,14 +7,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Restore timestamp
-        uses: chetan/git-restore-mtime-action@v1.2
+        uses: chetan/git-restore-mtime-action@v2
       - name: Rustup
         run: curl -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable
-      - uses: Swatinem/rust-cache@v2.7.3
+      - uses: Swatinem/rust-cache@v2
       - run: cargo run --release
         env:
           BLOG_NAME: "blog name"
